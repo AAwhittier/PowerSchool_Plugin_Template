@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<permission_mappings>
+    <permission name="/admin/home.html">
+        <!-- Add one <implies> block per named query defined in named_queries.xml -->
+        <implies allow="post">
+            /ws/schema/query/com.sugarsalem.AREA.ACTION
+        </implies>
+
+        <!-- Disabled/unused queries can be left in place but commented out:
+        <implies allow="post">
+            /ws/schema/query/com.sugarsalem.AREA.OTHER_ACTION
+        </implies>
+        -->
+    </permission>
+</permission_mappings>

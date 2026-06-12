@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://plugin.powerschool.pearson.com"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://plugin.powerschool.pearson.com plugin.xsd"
+    name="PLUGIN_NAME"
+    version="1.0.0"
+    description="DESCRIPTION OF WHAT THIS PLUGIN'S API DOES AND WHAT DATA IT EXPOSES.">
+
+    <oauth></oauth>
+
+    <publisher name="PUBLISHER NAME">
+        <contact email="PUBLISHER EMAIL"/>
+    </publisher>
+
+    <access_request>
+        <!-- TABLE_NAME Table -->
+        <field table="TABLE_NAME" field="FIELD_NAME" access="ViewOnly"/>
+        <!-- Add one <field> line per column referenced in named_queries.xml.
+             Group fields under a comment by table for readability. -->
+
+        <!-- ANOTHER_TABLE Table -->
+        <field table="ANOTHER_TABLE" field="FIELD_NAME" access="ViewOnly"/>
+    </access_request>
+
+</plugin>

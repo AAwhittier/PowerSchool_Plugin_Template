@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queries>
+
+    <!-- ============================================================
+         TEMPLATE QUERY
+         Copy/duplicate this block for each named query the plugin
+         needs to expose. Naming convention: com.sugarsalem.<area>.<action>[.<variant>]
+         ============================================================ -->
+
+    <query name="com.sugarsalem.AREA.ACTION"
+           coreTable="CORE_TABLE"
+           flattened="true">
+        <description>Short human-readable description of what this query returns.</description>
+        <args>
+            <arg name="paramName"
+                 description="Description of the parameter and expected format."
+                 type="primitive"
+                 required="true" />
+            <!-- Add additional <arg> elements as needed. Use required="false" for optional args. -->
+        </args>
+        <columns>
+            <!-- One <column> per field returned by the SQL SELECT.
+                 The 'column' attribute is TABLE.FIELD as defined in access_request (plugin.xml).
+                 The element text is the alias path: coretable.alias_name -->
+            <column column="TABLE.FIELD_NAME">coretable.alias_name</column>
+        </columns>
+        <sql><![CDATA[
+            SELECT
+                t.FIELD_NAME AS ALIAS_NAME
+            FROM CORE_TABLE t
+            WHERE UPPER(TRIM(t.SOME_FIELD)) = UPPER(TRIM(TO_CHAR(:paramName)))
+        ]]></sql>
+    </query>
+
+    <!-- ============================================================
+         Notes:
+         - flattened="true" returns a single flat object/row instead of
+           a nested table structure; use "false" for multi-row result sets.
+         - Use UPPER(TRIM(...)) for case/whitespace-insensitive string matches.
+         - Use LIKE '%' || :param || '%' for partial/wildcard matches.
+         - For multiple related lookups (e.g. by student/user/teacher),
+           create separate queries with a .student / .user / .teacher suffix
+           rather than relying on UNION, since UNION does not play well
+           with PowerSchool's <column> mapping.
+         - Wrap any commented-out/disabled queries in XML comments so they
+           are easy to re-enable later.
+         ============================================================ -->
+
+</queries>
